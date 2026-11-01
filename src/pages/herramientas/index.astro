@@ -16,30 +16,24 @@ const productsData = allProducts.map((p) => p.data);
     { name: 'Herramientas', url: '/herramientas' },
   ]}
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-20">
     {/* Encabezado */}
     <div class="max-w-2xl">
-      <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
-        Utilidades de calibración
-      </span>
-      <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-3">
+      <h1 class="font-display text-4xl sm:text-5xl text-espresso mb-3">
         Herramientas de barra
       </h1>
-      <p class="text-sm text-humo leading-relaxed">
+      <p class="text-sm sm:text-base text-humo leading-relaxed font-sans">
         Elimina las dudas en tu cocina con utilidades diseñadas para aficionados y baristas en casa.
       </p>
     </div>
 
     {/* SECCIÓN QUIZ */}
     <section id="quiz" class="scroll-mt-24">
-      <div class="mb-6">
-        <span class="text-xs uppercase font-bold tracking-wider text-cereza-oscura font-mono">
-          Recomendador guiado
-        </span>
-        <h2 class="font-display text-3xl text-espresso mt-0.5">
+      <div class="mb-8 pb-4 border-b border-espresso/15">
+        <h2 class="font-display text-3xl sm:text-4xl text-espresso mb-1">
           Tu cafetera en 4 preguntas
         </h2>
-        <p class="text-xs sm:text-sm text-humo">
+        <p class="text-xs sm:text-sm text-humo font-sans">
           Responde a cuatro hábitos de tu mañana para obtener una selección personalizada con alternativas y enlace directo.
         </p>
       </div>
@@ -48,15 +42,12 @@ const productsData = allProducts.map((p) => p.data);
     </section>
 
     {/* SECCIÓN CALCULADORA Y TIMER */}
-    <section id="calculadora" class="scroll-mt-24 pt-12 border-t border-espresso/15">
-      <div class="mb-6">
-        <span class="text-xs uppercase font-bold tracking-wider text-cereza-oscura font-mono">
-          Precisión al gramo y al segundo
-        </span>
-        <h2 class="font-display text-3xl text-espresso mt-0.5">
+    <section id="calculadora" class="scroll-mt-24 pt-8">
+      <div class="mb-8 pb-4 border-b border-espresso/15">
+        <h2 class="font-display text-3xl sm:text-4xl text-espresso mb-1">
           Calculadora de ratio y temporizador
         </h2>
-        <p class="text-xs sm:text-sm text-humo">
+        <p class="text-xs sm:text-sm text-humo font-sans">
           Ajusta tu receta para cualquier método y guía tus vertidos con el cronómetro de fases integrado.
         </p>
       </div>

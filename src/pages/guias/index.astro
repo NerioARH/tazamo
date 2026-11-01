@@ -16,26 +16,23 @@ const sortedGuias = allGuias.sort(
     { name: 'Guías', url: '/guias' },
   ]}
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
     <div class="max-w-2xl mb-12">
-      <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
-        Biblioteca editorial
-      </span>
-      <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-3">
+      <h1 class="font-display text-4xl sm:text-5xl text-espresso mb-3">
         Guías y tutoriales de café
       </h1>
-      <p class="text-sm text-humo leading-relaxed">
+      <p class="text-sm sm:text-base text-humo leading-relaxed font-sans">
         Explicaciones directas y sin relleno para calibrar tus moliendas, evitar sabores agrios o quemados y sacar el máximo partido a cada grano.
       </p>
     </div>
 
-    {/* Cuadrícula de artículos */}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {/* Cuadrícula de artículos sin sombras genéricas */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedGuias.map((g) => (
-        <article class="bg-white p-6 rounded-lg border border-espresso/10 hover:border-cereza-oscura/40 transition-all flex flex-col justify-between group shadow-sm">
+        <article class="p-6 rounded-md bg-[#FAFBF9] border border-espresso/15 flex flex-col justify-between group">
           <div>
-            <div class="flex items-center justify-between gap-2 mb-3 text-xs text-humo">
-              <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-cereza-oscura text-porcelana font-mono">
+            <div class="flex items-center justify-between gap-2 mb-3 text-xs text-humo font-sans">
+              <span class="font-semibold text-cereza-oscura uppercase">
                 {g.data.metodo}
               </span>
               <span>{g.data.tiempoLectura} de lectura</span>
@@ -47,18 +44,18 @@ const sortedGuias = allGuias.sort(
               </a>
             </h2>
 
-            <p class="text-xs text-humo leading-relaxed line-clamp-3 mb-4">
+            <p class="text-xs text-humo leading-relaxed line-clamp-3 mb-6 font-sans">
               {g.data.descripcion}
             </p>
           </div>
 
-          <div class="pt-4 border-t border-espresso/10 flex items-center justify-between text-xs">
+          <div class="pt-4 border-t border-espresso/10 flex items-center justify-between text-xs font-sans">
             <span class="text-humo">{g.data.autor}</span>
             <a
               href={`/guias/${g.id}`}
               class="font-semibold text-cereza-oscura group-hover:underline"
             >
-              Leer guía →
+              Leer guía
             </a>
           </div>
         </article>

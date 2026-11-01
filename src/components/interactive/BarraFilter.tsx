@@ -33,7 +33,7 @@ export interface ProductItem {
 
 interface Props {
   initialProducts: ProductItem[];
-  isShelf?: boolean; // True for Home horizontal shelf, false for /equipo full grid
+  isShelf?: boolean;
   showFilters?: boolean;
 }
 
@@ -43,7 +43,6 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
   const [selectedPresupuesto, setSelectedPresupuesto] = useState<string>('todos');
   const [store, setStore] = useState<AmazonStore>('es');
 
-  // Leer estado de URL y localStorage al cargar
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -63,13 +62,11 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
       if (urlNivel) setSelectedNivel(urlNivel);
       if (urlPresupuesto) setSelectedPresupuesto(urlPresupuesto);
 
-      // Detectar tienda preferida
       try {
         const savedStore = localStorage.getItem('tazamo_store') as AmazonStore;
         if (savedStore === 'us' || savedStore === 'es') setStore(savedStore);
       } catch (e) {}
 
-      // Escuchar cambios de método desde el Dial del hero
       const handleMethodChanged = (e: any) => {
         if (e.detail?.method) {
           setSelectedMethod(e.detail.method);
@@ -112,7 +109,6 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
     window.history.replaceState({}, '', url.toString());
   };
 
-  // Filtrado de productos
   const filteredProducts = initialProducts.filter((p) => {
     const matchMethod = selectedMethod === 'todos' || p.metodos.includes(selectedMethod);
     const matchNivel = selectedNivel === 'todos' || p.nivel === selectedNivel;
@@ -120,7 +116,6 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
     return matchMethod && matchNivel && matchPresupuesto;
   });
 
-  // Clases para borde izquierdo según nivel de tueste (DESIGN.md)
   const getTuesteBorderColor = (tueste: string) => {
     switch (tueste) {
       case 'crudo': return 'border-l-tueste-crudo';
@@ -134,43 +129,40 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
 
   return (
     <div className="w-full">
-      {/* Selector de tienda (EE. UU. / España) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-porcelana/10 text-xs">
+      {/* Selector de tienda (España / EE. UU.) sin artificios */}
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-porcelana/15 text-xs font-sans">
         <span className="text-humo-claro">
-          Precios actualizados directamente en la tienda oficial:
+          Precios actualizados en tiempo real en la tienda oficial:
         </span>
-        <div className="inline-flex rounded-md p-1 bg-cereza-profunda border border-porcelana/15">
+        <div className="inline-flex rounded p-1 bg-cereza-profunda border border-porcelana/15">
           <button
             onClick={() => changeStore('es')}
-            className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-3 py-1 rounded text-xs transition-all ${
               store === 'es'
                 ? 'bg-porcelana text-cereza-oscura font-semibold'
                 : 'text-humo-claro hover:text-porcelana'
             }`}
           >
-            Amazon España (.es)
+            Amazon España
           </button>
           <button
             onClick={() => changeStore('us')}
-            className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+            className={`px-3 py-1 rounded text-xs transition-all ${
               store === 'us'
                 ? 'bg-porcelana text-cereza-oscura font-semibold'
                 : 'text-humo-claro hover:text-porcelana'
             }`}
           >
-            Amazon EE. UU. (.com)
+            Amazon EE. UU.
           </button>
         </div>
       </div>
 
-      {/* Barra de Filtros interactiva */}
+      {/* Barra de Filtros interactiva sin kickers */}
       {showFilters && (
         <div className="space-y-4 mb-8">
           {/* Métodos */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            <span className="text-xs uppercase font-semibold text-humo-claro pr-1 shrink-0">
-              Método:
-            </span>
             {[
               { id: 'todos', label: 'Todos' },
               { id: 'espresso', label: 'Espresso' },
@@ -183,10 +175,10 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
               <button
                 key={btn.id}
                 onClick={() => changeMethod(btn.id)}
-                className={`px-3.5 py-1.5 rounded-pill text-xs font-medium shrink-0 transition-all min-h-[38px] ${
+                className={`px-3.5 py-1.5 rounded-pill text-xs shrink-0 transition-all min-h-[38px] ${
                   selectedMethod === btn.id
-                    ? 'bg-crema text-espresso font-semibold shadow-sm'
-                    : 'bg-cereza-profunda text-humo-claro hover:text-porcelana hover:bg-cereza-profunda/80 border border-porcelana/10'
+                    ? 'bg-crema text-espresso font-semibold'
+                    : 'bg-cereza-profunda text-humo-claro hover:text-porcelana border border-porcelana/15'
                 }`}
               >
                 {btn.label}
@@ -196,7 +188,6 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
 
           {!isShelf && (
             <div className="flex flex-wrap gap-4 pt-2 text-xs">
-              {/* Nivel */}
               <div className="flex items-center gap-2">
                 <span className="text-humo-claro">Nivel:</span>
                 {['todos', 'principiante', 'intermedio', 'pro'].map((lvl) => (
@@ -214,7 +205,6 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
                 ))}
               </div>
 
-              {/* Presupuesto */}
               <div className="flex items-center gap-2">
                 <span className="text-humo-claro">Presupuesto:</span>
                 {['todos', 'bajo', 'medio', 'alto'].map((pres) => (
@@ -236,14 +226,14 @@ export default function BarraFilter({ initialProducts, isShelf = false, showFilt
         </div>
       )}
 
-      {/* Contenedor de Productos: Estantería horizontal o Cuadrícula */}
+      {/* Estantería horizontal o cuadrícula */}
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12 px-4 rounded-md bg-cereza-profunda/40 border border-porcelana/10">
-          <p className="text-porcelana font-medium mb-1">
+          <p className="text-porcelana font-medium mb-1 font-sans">
             No hay productos registrados con esta combinación de filtros.
           </p>
-          <p className="text-xs text-humo-claro mb-4">
-            Prueba a seleccionar "Todos" en método o presupuesto para ver la barra completa.
+          <p className="text-xs text-humo-claro mb-4 font-sans">
+            Selecciona "Todos" para volver a ver la barra completa.
           </p>
           <button
             onClick={() => {
@@ -289,18 +279,17 @@ function ProductCard({
 
   return (
     <div
-      className={`h-full flex flex-col justify-between bg-cereza-profunda rounded-md p-5 border-y border-r border-porcelana/10 border-l-[4px] ${getTuesteBorderColor(
+      className={`h-full flex flex-col justify-between bg-cereza-profunda rounded-md p-5 border-y border-r border-porcelana/15 border-l-[3px] ${getTuesteBorderColor(
         p.tueste
-      )} transition-transform duration-base`}
+      )} transition-colors`}
     >
       <div>
-        {/* Cabecera de tarjeta: ilustración y chips */}
         <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="w-16 h-16 rounded-md bg-cereza-oscura p-2 flex items-center justify-center text-porcelana/80 border border-porcelana/10 shrink-0">
-            <img src={p.imagen.src} alt={p.imagen.alt} className="w-12 h-12 object-contain filter invert" />
+          <div className="w-14 h-14 rounded bg-cereza-oscura p-2 flex items-center justify-center text-porcelana/80 border border-porcelana/10 shrink-0">
+            <img src={p.imagen.src} alt={p.imagen.alt} className="w-10 h-10 object-contain filter invert" />
           </div>
-          <div className="flex flex-col items-end gap-1.5">
-            <span className="text-[11px] font-medium tracking-wide uppercase px-2 py-0.5 rounded bg-cereza-oscura text-humo-claro border border-porcelana/10">
+          <div className="flex flex-col items-end gap-1 text-[11px] font-sans">
+            <span className="text-humo-claro capitalize">
               {p.nivel}
             </span>
             {p.probado && (
@@ -311,19 +300,19 @@ function ProductCard({
           </div>
         </div>
 
-        <p className="text-xs text-humo-claro uppercase tracking-wider mb-1 font-mono">
+        <p className="text-xs text-humo-claro mb-1 font-mono">
           {p.marca}
         </p>
         <h3 className="font-display text-xl text-porcelana leading-snug mb-2">
           {p.nombre}
         </h3>
 
-        <p className="text-xs text-humo-claro italic mb-4 leading-relaxed">
+        <p className="text-xs text-humo-claro italic mb-4 leading-relaxed font-sans">
           «{p.idealPara}»
         </p>
 
         {/* 3 Razones */}
-        <div className="space-y-1.5 mb-4 text-xs text-porcelana/90">
+        <div className="space-y-1.5 mb-4 text-xs text-porcelana/90 font-sans">
           {p.razones.map((r, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className="text-crema shrink-0 text-sm leading-none">•</span>
@@ -332,9 +321,9 @@ function ProductCard({
           ))}
         </div>
 
-        {/* Contras honestas */}
+        {/* Contras reales */}
         {p.contras.length > 0 && (
-          <div className="p-2.5 rounded bg-cereza-oscura/70 border border-porcelana/5 mb-5 text-[11px] text-humo-claro">
+          <div className="p-2.5 rounded bg-cereza-oscura border border-porcelana/10 mb-5 text-[11px] text-humo-claro font-sans">
             <span className="font-semibold text-porcelana block mb-1">A tener en cuenta:</span>
             {p.contras.map((c, i) => (
               <p key={i} className="leading-snug">
@@ -345,22 +334,18 @@ function ProductCard({
         )}
       </div>
 
-      {/* Botón de compra oficial hacia Amazon y microtexto de afiliación */}
-      <div className="pt-3 border-t border-porcelana/10">
+      <div className="pt-3 border-t border-porcelana/15">
         <a
           href={targetLink}
           target="_blank"
           rel="sponsored nofollow noopener"
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md bg-crema text-espresso font-semibold text-sm hover:brightness-105 transition-all duration-fast min-h-[44px]"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md bg-crema text-espresso font-semibold text-sm hover:brightness-105 transition-all min-h-[44px]"
         >
           <span>Ver en Amazon</span>
-          <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
-          </svg>
         </a>
-        <div className="flex items-center justify-between mt-2 px-1 text-[10px] text-humo-claro">
+        <div className="flex items-center justify-between mt-2 px-1 text-[10px] text-humo-claro font-sans">
           <span>{AFFILIATE_BADGE_TEXT}</span>
-          <span>{store === 'es' ? 'Amazon.es' : 'Amazon.com'}</span>
+          <span>{store === 'es' ? 'Amazon España' : 'Amazon EE. UU.'}</span>
         </div>
       </div>
     </div>

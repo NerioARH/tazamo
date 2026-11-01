@@ -13,13 +13,11 @@ export async function getStaticPaths() {
 const { metodo: metodoId } = Astro.params;
 const metodo: MetodoData = METODOS[metodoId as string] || METODOS.v60;
 
-// Artículos de esta categoría
 const allGuias = await getCollection('guias');
 const guiasRelacionadas = allGuias.filter(
   (g) => g.data.metodo === metodo.id || g.data.metodo === 'general'
 );
 
-// Productos para este método
 const allProducts = await getCollection('equipo');
 const productosRelacionados = allProducts
   .filter((p) => p.data.metodos.includes(metodo.id))
@@ -36,26 +34,19 @@ const productosRelacionados = allProducts
   ]}
 >
   {/* Cabecera Técnica del Método */}
-  <section class="w-full bg-cereza-oscura text-porcelana py-12 sm:py-16 border-b border-porcelana/10">
+  <section class="w-full bg-cereza-oscura text-porcelana py-14 sm:py-20 border-b border-porcelana/15">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 mb-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-crema"></span>
-          <span class="text-xs font-bold uppercase tracking-wider text-humo-claro font-mono">
-            Guía madre de método
-          </span>
-        </div>
-
-        <h1 class="font-display text-4xl sm:text-5xl text-porcelana mb-4">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-porcelana mb-4">
           {metodo.nombre}
         </h1>
 
-        <p class="text-base sm:text-lg text-humo-claro leading-relaxed mb-8">
+        <p class="text-base sm:text-lg text-humo-claro leading-relaxed mb-10 font-sans">
           {metodo.descripcionCorta}
         </p>
 
         {/* Ficha técnica de partida */}
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-md bg-cereza-profunda/70 border border-porcelana/10">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-md bg-cereza-profunda border border-porcelana/15 font-sans">
           <div>
             <span class="text-xs text-humo-claro block mb-0.5">Ratio sugerido</span>
             <span class="font-display text-xl text-porcelana tabular-nums">{metodo.ratio}</span>
@@ -78,16 +69,16 @@ const productosRelacionados = allProducts
   </section>
 
   {/* Guía Madre / Pasos y Técnica */}
-  <section class="w-full py-16 bg-porcelana">
+  <section class="w-full py-16 sm:py-24 bg-porcelana">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <div class="lg:col-span-8 space-y-8">
-          <div class="bg-white p-6 sm:p-8 rounded-lg border border-espresso/10 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-8 space-y-10">
+          <div class="p-6 sm:p-8 rounded-md bg-[#FAFBF9] border border-espresso/15">
             <h2 class="font-display text-2xl sm:text-3xl text-espresso mb-4">
               Fundamentos de extracción en {metodo.nombre}
             </h2>
 
-            <div class="prose prose-stone max-w-none text-sm text-espresso/90 leading-relaxed space-y-4">
+            <div class="prose prose-stone max-w-none text-base text-espresso/90 leading-relaxed space-y-4 font-sans">
               <p>
                 Para obtener una taza equilibrada en <strong>{metodo.nombre}</strong> es imprescindible controlar la temperatura del agua y el grosor uniforme del grano. Los datos expuestos arriba deben tomarse como el <em>punto de partida</em> sobre el que ajustar la receta según tu café concreto.
               </p>
@@ -103,43 +94,46 @@ const productosRelacionados = allProducts
 
           {/* Guías y tutoriales específicos */}
           <div>
-            <h3 class="font-display text-2xl text-espresso mb-4">
+            <h3 class="font-display text-2xl text-espresso mb-6">
               Artículos y tutoriales para {metodo.nombre}
             </h3>
             <div class="space-y-4">
               {guiasRelacionadas.map((g) => (
-                <article class="bg-white p-5 rounded-md border border-espresso/10 hover:border-cereza-oscura/40 transition-colors flex items-center justify-between gap-4 group">
+                <article class="p-5 rounded-md bg-[#FAFBF9] border border-espresso/15 flex items-center justify-between gap-4 group">
                   <div>
                     <h4 class="font-display text-lg text-espresso group-hover:text-cereza-oscura transition-colors">
                       <a href={`/guias/${g.id}`}>
                         {g.data.titulo}
                       </a>
                     </h4>
-                    <p class="text-xs text-humo mt-1 line-clamp-1">
+                    <p class="text-xs text-humo mt-1 line-clamp-1 font-sans">
                       {g.data.descripcion}
                     </p>
                   </div>
-                  <span class="text-xs font-semibold text-cereza-oscura shrink-0">
-                    Leer →
-                  </span>
+                  <a
+                    href={`/guias/${g.id}`}
+                    class="text-xs font-semibold text-cereza-oscura shrink-0 hover:underline font-sans"
+                  >
+                    Leer
+                  </a>
                 </article>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Sidebar: Accesos rápidos y calculadora */}
+        {/* Sidebar */}
         <div class="lg:col-span-4 space-y-6">
-          <div class="p-6 rounded-lg bg-white border border-espresso/10 shadow-sm text-xs">
-            <h4 class="font-display text-lg text-espresso font-semibold mb-2">
-              Herramientas para este método
+          <div class="p-6 rounded-md bg-[#FAFBF9] border border-espresso/15 text-xs font-sans">
+            <h4 class="font-display text-xl text-espresso mb-2">
+              Herramientas de barra
             </h4>
-            <p class="text-humo mb-4 leading-relaxed">
+            <p class="text-humo mb-6 leading-relaxed">
               Calcula tus gramos exactos de café o inicia el cronómetro por fases ajustado a {metodo.nombre}.
             </p>
             <a
               href="/herramientas"
-              class="block text-center py-2.5 px-4 rounded-md bg-cereza-oscura text-porcelana font-semibold hover:bg-cereza-profunda transition-colors min-h-[40px]"
+              class="block text-center py-3 px-4 rounded-md bg-cereza-oscura text-porcelana font-semibold hover:bg-cereza-profunda transition-colors min-h-[44px]"
             >
               Abrir Calculadora y Timer
             </a>
@@ -150,16 +144,13 @@ const productosRelacionados = allProducts
   </section>
 
   {/* La Barra de Equipo para este Método */}
-  <section class="w-full py-16 bg-cereza-oscura text-porcelana border-t border-porcelana/10">
+  <section class="w-full py-16 sm:py-24 bg-cereza-oscura text-porcelana border-t border-porcelana/15">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="mb-8">
-        <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
-          Selección editorial
-        </span>
-        <h2 class="font-display text-3xl sm:text-4xl text-porcelana mt-1">
+      <div class="mb-10 pb-4 border-b border-porcelana/15">
+        <h2 class="font-display text-3xl sm:text-4xl text-porcelana">
           Equipo evaluado para {metodo.nombre}
         </h2>
-        <p class="text-xs text-humo-claro mt-1">
+        <p class="text-xs sm:text-sm text-humo-claro mt-1 font-sans">
           Herramientas recomendadas específicamente para este sistema, con sus contras reales.
         </p>
       </div>
