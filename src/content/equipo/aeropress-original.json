@@ -1,0 +1,38 @@
+{
+  "id": "aeropress-original",
+  "nombre": "Cafetera de inmersión y presión de aire",
+  "marca": "AeroPress / Original",
+  "categoria": "cafeteras",
+  "categoriaLabel": "Cafeteras",
+  "metodos": ["aeropress"],
+  "nivel": "principiante",
+  "tueste": "claro",
+  "idealPara": "Viajes, oficinas y experimentos de recetas rápidas sin riesgo de romper cristal ni cerámica.",
+  "razones": [
+    "Sistema de émbolo hermético que limpia la cámara en un solo movimiento de expulsión de la pastilla.",
+    "Tolerancia altísima a variaciones de molienda: casi imposible de hacer un café desagradable.",
+    "Copolímero de grado alimentario ultraligero y totalmente libre de BPA y ftalatos."
+  ],
+  "contras": [
+    "Volumen máximo de extracción limitado a una taza grande o dos pequeñas.",
+    "La estética industrial plástica no encaja en barras que busquen cerámica o vidrio artesanal."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "ambas",
+    "tiempo": "rapido",
+    "presupuesto": "bajo"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/aeropress.svg",
+    "alt": "Ilustración lineal de cafetera AeroPress",
+    "fuente": "ilustracion"
+  },
+  "orden": 7
+}

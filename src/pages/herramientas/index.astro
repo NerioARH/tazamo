@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CoffeeQuiz from '../../components/interactive/CoffeeQuiz';
+import RatioCalculator from '../../components/interactive/RatioCalculator';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('equipo');
+const productsData = allProducts.map((p) => p.data);
+---
+
+<BaseLayout
+  title="Herramientas de barra — Tazamo"
+  description="Quiz interactivo para encontrar tu cafetera ideal, calculadora de ratio de café y agua y temporizador de extracción por fases."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Herramientas', url: '/herramientas' },
+  ]}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16">
+    {/* Encabezado */}
+    <div class="max-w-2xl">
+      <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+        Utilidades de calibración
+      </span>
+      <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-3">
+        Herramientas de barra
+      </h1>
+      <p class="text-sm text-humo leading-relaxed">
+        Elimina las dudas en tu cocina con utilidades diseñadas para aficionados y baristas en casa.
+      </p>
+    </div>
+
+    {/* SECCIÓN QUIZ */}
+    <section id="quiz" class="scroll-mt-24">
+      <div class="mb-6">
+        <span class="text-xs uppercase font-bold tracking-wider text-cereza-oscura font-mono">
+          Recomendador guiado
+        </span>
+        <h2 class="font-display text-3xl text-espresso mt-0.5">
+          Tu cafetera en 4 preguntas
+        </h2>
+        <p class="text-xs sm:text-sm text-humo">
+          Responde a cuatro hábitos de tu mañana para obtener una selección personalizada con alternativas y enlace directo.
+        </p>
+      </div>
+
+      <CoffeeQuiz client:load products={productsData} />
+    </section>
+
+    {/* SECCIÓN CALCULADORA Y TIMER */}
+    <section id="calculadora" class="scroll-mt-24 pt-12 border-t border-espresso/15">
+      <div class="mb-6">
+        <span class="text-xs uppercase font-bold tracking-wider text-cereza-oscura font-mono">
+          Precisión al gramo y al segundo
+        </span>
+        <h2 class="font-display text-3xl text-espresso mt-0.5">
+          Calculadora de ratio y temporizador
+        </h2>
+        <p class="text-xs sm:text-sm text-humo">
+          Ajusta tu receta para cualquier método y guía tus vertidos con el cronómetro de fases integrado.
+        </p>
+      </div>
+
+      <RatioCalculator client:load />
+    </section>
+  </div>
+</BaseLayout>

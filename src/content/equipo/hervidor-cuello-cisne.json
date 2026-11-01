@@ -1,0 +1,38 @@
+{
+  "id": "hervidor-cuello-cisne",
+  "nombre": "Hervidor de cuello de cisne con control de flujo",
+  "marca": "Hario / Buono VKB-120",
+  "categoria": "hervidores",
+  "categoriaLabel": "Hervidores",
+  "metodos": ["v60", "aeropress", "prensa-francesa"],
+  "nivel": "principiante",
+  "tueste": "claro",
+  "idealPara": "Lograr un caudal de agua continuo, fino y centrado en filtrados manuales de goteo.",
+  "razones": [
+    "Pitorro curvo estilizado que permite verter un hilo constante de agua sin salpicaduras.",
+    "Mango ergonómico con punto de apoyo firme para verter lentamente con la muñeca descansada.",
+    "Fabricado en acero inoxidable compatible con inducción, gas y placas eléctricas."
+  ],
+  "contras": [
+    "No cuenta con control de temperatura digital integrado (requiere termómetro externo).",
+    "El cuerpo exterior se calienta bastante durante el uso prolongado."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "no",
+    "tiempo": "ritual",
+    "presupuesto": "medio"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/hervidor.svg",
+    "alt": "Ilustración lineal de hervidor de cuello de cisne",
+    "fuente": "ilustracion"
+  },
+  "orden": 3
+}

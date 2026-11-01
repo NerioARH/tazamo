@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Cafetera italiana Moka octogonal -->
+  <path d="M 60 135 L 52 95 L 108 95 L 100 135 Z" />
+  <rect x="54" y="90" width="52" height="6" rx="2" fill="currentColor" />
+  <path d="M 48 90 L 58 45 L 102 45 L 112 90 Z" />
+  <path d="M 58 45 L 80 32 L 102 45" />
+  <circle cx="80" cy="28" r="4" fill="currentColor" />
+  <path d="M 108 55 C 130 65 130 90 106 95" />
+</svg>

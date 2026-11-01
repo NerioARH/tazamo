@@ -1,0 +1,38 @@
+{
+  "id": "espumador-leche-nanofoamer",
+  "nombre": "Microespumador manual de leche para latte art",
+  "marca": "Subminimal / NanoFoamer",
+  "categoria": "espumadores",
+  "categoriaLabel": "Espumadores",
+  "metodos": ["espresso", "moka"],
+  "nivel": "intermedio",
+  "tueste": "espresso",
+  "idealPara": "Conseguir microespuma de textura sedosa con leche caliente en casa sin lanza de vapor profesional.",
+  "razones": [
+    "Pantallas nanofinas de flujo que pulverizan las burbujas grandes en microespuma brillante tipo pintura.",
+    "Motor balanceado de alta rotación sumergible y lavable bajo el grifo de agua.",
+    "Permite verter latte art detallado sobre café moka o espresso en cuestión de 20 segundos."
+  ],
+  "contras": [
+    "No calienta la leche: exige precalentarla en jarra o microondas a 60–65 °C previamente.",
+    "Requiere recarga periódica de batería o pilas de calidad para mantener potencia uniforme."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "si",
+    "tiempo": "medio",
+    "presupuesto": "medio"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/espumador.svg",
+    "alt": "Ilustración lineal de espumador de leche",
+    "fuente": "ilustracion"
+  },
+  "orden": 8
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Prensa francesa de vidrio y émbolo -->
+  <rect x="48" y="45" width="64" height="90" rx="6" />
+  <line x1="80" y1="20" x2="80" y2="45" />
+  <circle cx="80" cy="20" r="6" fill="currentColor" />
+  <line x1="50" y1="75" x2="110" y2="75" stroke-dasharray="3 3" />
+  <path d="M 112 58 C 130 58 135 95 112 110" />
+  <path d="M 48 50 L 40 45" />
+</svg>

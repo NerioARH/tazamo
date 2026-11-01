@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Política de privacidad — Tazamo"
+  description="Compromiso de privacidad de Tazamo: sin cookies de rastreo intrusivas ni venta de datos personales a terceros."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Privacidad', url: '/privacidad' },
+  ]}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-espresso">
+    <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+      Protección de datos
+    </span>
+    <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-6">
+      Política de privacidad
+    </h1>
+
+    <div class="prose prose-stone text-base leading-relaxed space-y-5">
+      <p>
+        En Tazamo respetamos profundamente tu intimidad digital. Hemos diseñado esta web bajo un principio de minimización radical de datos:
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        1. Analítica respetuosa sin cookies
+      </h2>
+      <p>
+        No empleamos cookies de rastreo entre sitios (third-party cookies). Utilizamos mediciones anónimas agregadas para entender qué guías son más leídas sin almacenar identificadores persistentes ni vender perfiles a redes publicitarias.
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        2. Almacenamiento local (localStorage)
+      </h2>
+      <p>
+        Guardamos únicamente en el almacenamiento local de tu navegador tu método de café activo y tu tienda preferida (Amazon España o EE. UU.) para no obligarte a reconfigurar la barra en cada visita. Esta información jamás sale de tu dispositivo.
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        3. Boletín de correo electrónico
+      </h2>
+      <p>
+        Si te suscribes voluntariamente a «La receta del domingo», tu correo se almacena de forma segura exclusivamente para enviarte dicho contenido. No compartimos tu email con terceros y puedes darte de baja en cualquier momento con un solo clic.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

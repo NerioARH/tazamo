@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cómo elegimos el equipo — Tazamo"
+  description="Nuestro criterio de pruebas y selección editorial para recomendar productos y herramientas de café sin sesgos comerciales."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Cómo elegimos', url: '/como-elegimos' },
+  ]}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-espresso">
+    <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+      Criterio editorial
+    </span>
+    <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-6">
+      Cómo elegimos el equipo
+    </h1>
+
+    <div class="prose prose-stone text-base leading-relaxed space-y-5">
+      <p>
+        En internet abundan los sitios de afiliación automáticos que publican listas interminables del "top 10" usando textos generados por inteligencia artificial sin haber tocado un grano de café.
+      </p>
+
+      <p>
+        En Tazamo operamos bajo un principio estricto: <strong>solo recomendamos lo que usaríamos en nuestra propia cocina o lo que ha demostrado una consistencia intachable en pruebas técnicas de laboratorio.</strong>
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        Los cuatro pilares de evaluación
+      </h2>
+
+      <div class="space-y-4 text-sm">
+        <div class="p-4 rounded-md bg-white border border-espresso/10">
+          <strong class="text-cereza-oscura block mb-1">1. Uniformidad y repetibilidad:</strong>
+          En un molinillo, valoramos la curva de distribución de partículas y la ausencia de finos indeseados. En una báscula, la velocidad de respuesta y la precisión al décimo de gramo.
+        </div>
+
+        <div class="p-4 rounded-md bg-white border border-espresso/10">
+          <strong class="text-cereza-oscura block mb-1">2. Reparabilidad y materiales:</strong>
+          Priorizamos el acero inoxidable mecanizado, el vidrio de borosilicato y la cerámica frente a plásticos quebradizos o motores no sustituibles.
+        </div>
+
+        <div class="p-4 rounded-md bg-white border border-espresso/10">
+          <strong class="text-cereza-oscura block mb-1">3. Relación calidad/precio justa:</strong>
+          No te diremos que gastes 600 € en un molino si uno manual de 60 € rinde de forma indistinguible en cata a ciegas para métodos de filtro.
+        </div>
+
+        <div class="p-4 rounded-md bg-white border border-espresso/10">
+          <strong class="text-cereza-oscura block mb-1">4. Contras visibles:</strong>
+          Todo producto tiene puntos débiles (capacidad pequeña, fragilidad al caer, necesidad de pilas...). Si una web no te cuenta las contras, te está vendiendo, no informando.
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

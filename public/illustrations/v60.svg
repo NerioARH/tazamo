@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Cono V60 y jarra servidora -->
+  <path d="M 45 40 L 115 40 L 88 85 L 72 85 Z" />
+  <line x1="35" y1="88" x2="125" y2="88" />
+  <path d="M 52 95 L 108 95 L 115 135 L 45 135 Z" />
+  <path d="M 112 105 C 126 105 126 125 112 128" />
+</svg>

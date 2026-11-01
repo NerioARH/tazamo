@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExtractionDial from '../components/interactive/ExtractionDial';
+import BarraFilter from '../components/interactive/BarraFilter';
+import QuickTipBar from '../components/interactive/QuickTipBar';
+import NewsletterForm from '../components/interactive/NewsletterForm';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('equipo');
+const productsData = allProducts.map((p) => p.data);
+
+const allGuias = await getCollection('guias');
+const sortedGuias = allGuias.sort(
+  (a, b) => new Date(b.data.fechaPublicacion).getTime() - new Date(a.data.fechaPublicacion).getTime()
+);
+
+const featuredGuia = sortedGuias[0];
+const secondaryGuias = sortedGuias.slice(1, 3);
+---
+
+<BaseLayout
+  title="Tazamo — Tu barra de café en casa"
+  description="Guías, recetas, herramientas interactivas y equipo seleccionado para preparar en casa el café que pagas en la mejor cafetería de especialidad."
+>
+  {/* SECCIÓN 1: HERO (Banda cereza-oscura con Dial de extracción y Taza cenital) */}
+  <section class="w-full bg-cereza-oscura py-12 sm:py-16 lg:py-20 border-b border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <ExtractionDial client:load initialMethodId="v60" />
+    </div>
+  </section>
+
+  {/* SECCIÓN 2: TIRA DE TIP DEL DÍA */}
+  <QuickTipBar client:idle />
+
+  {/* SECCIÓN 3: PORCELANA — Empieza por aquí (Composición asimétrica editorial: 1 grande + 2 pequeñas) */}
+  <section class="w-full py-16 sm:py-20 bg-porcelana">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+            Técnica y fundamentos
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl text-espresso mt-1">
+            Empieza por aquí
+          </h2>
+        </div>
+        <a href="/guias" class="text-xs font-semibold text-cereza-oscura hover:underline">
+          Ver todas las guías
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Guía Destacada (8 columnas) */}
+        {featuredGuia && (
+          <article class="lg:col-span-8 bg-white p-6 sm:p-8 rounded-lg border border-espresso/10 flex flex-col justify-between group hover:border-cereza-oscura/40 transition-colors shadow-sm">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-cereza-oscura text-porcelana font-mono">
+                  {featuredGuia.data.metodo}
+                </span>
+                <span class="text-xs text-humo">
+                  {featuredGuia.data.tiempoLectura} de lectura
+                </span>
+              </div>
+
+              <h3 class="font-display text-2xl sm:text-3xl text-espresso group-hover:text-cereza-oscura transition-colors mb-3 leading-tight">
+                <a href={`/guias/${featuredGuia.id}`}>
+                  {featuredGuia.data.titulo}
+                </a>
+              </h3>
+
+              <p class="text-sm text-humo leading-relaxed mb-6">
+                {featuredGuia.data.descripcion}
+              </p>
+
+              {/* Respuesta rápida resumida */}
+              <div class="p-4 rounded-md bg-porcelana border-l-2 border-crema text-xs text-espresso leading-relaxed">
+                <strong class="font-semibold block mb-1 text-cereza-oscura">Respuesta rápida:</strong>
+                {featuredGuia.data.respuestaRapida}
+              </div>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-espresso/10 flex items-center justify-between text-xs">
+              <span class="text-humo">Por {featuredGuia.data.autor}</span>
+              <a
+                href={`/guias/${featuredGuia.id}`}
+                class="font-semibold text-cereza-oscura group-hover:underline inline-flex items-center gap-1"
+              >
+                Leer guía completa
+              </a>
+            </div>
+          </article>
+        )}
+
+        {/* 2 Guías Satélite Desiguales (4 columnas) */}
+        <div class="lg:col-span-4 flex flex-col justify-between gap-6">
+          {secondaryGuias.map((g) => (
+            <article class="bg-white p-6 rounded-lg border border-espresso/10 flex flex-col justify-between hover:border-cereza-oscura/40 transition-colors shadow-sm flex-1 group">
+              <div>
+                <div class="flex items-center gap-2 mb-2 text-xs text-humo">
+                  <span class="font-mono uppercase text-[10px] text-cereza-oscura font-bold">
+                    {g.data.metodo}
+                  </span>
+                  <span>·</span>
+                  <span>{g.data.tiempoLectura}</span>
+                </div>
+                <h4 class="font-display text-xl text-espresso group-hover:text-cereza-oscura transition-colors mb-2 leading-snug">
+                  <a href={`/guias/${g.id}`}>
+                    {g.data.titulo}
+                  </a>
+                </h4>
+                <p class="text-xs text-humo line-clamp-3 leading-relaxed">
+                  {g.data.descripcion}
+                </p>
+              </div>
+
+              <div class="pt-4 mt-4 border-t border-espresso/10 flex justify-end">
+                <a
+                  href={`/guias/${g.id}`}
+                  class="text-xs font-semibold text-cereza-oscura group-hover:underline"
+                >
+                  Ver artículo
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* SECCIÓN 4: CEREZA — La Barra (Estantería horizontal filtrable) */}
+  <section class="w-full py-16 sm:py-20 bg-cereza-oscura text-porcelana border-y border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
+            Selección sin relleno
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl text-porcelana mt-1">
+            La Barra de Equipo
+          </h2>
+          <p className="text-xs sm:text-sm text-humo-claro mt-1">
+            El equipo que de verdad necesitas para cada método, con sus contras reales y sin inventar valoraciones.
+          </p>
+        </div>
+        <a
+          href="/equipo"
+          class="text-xs font-semibold text-crema hover:underline shrink-0"
+        >
+          Explorar catálogo completo
+        </a>
+      </div>
+
+      <BarraFilter client:idle initialProducts={productsData} isShelf={true} showFilters={true} />
+    </div>
+  </section>
+
+  {/* SECCIÓN 5: PORCELANA — Herramientas Interactivas (Quiz y Calculadora) */}
+  <section class="w-full py-16 sm:py-20 bg-porcelana">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+          Herramientas de barra
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl text-espresso mt-1 mb-2">
+          Calibra tu café a medida
+        </h2>
+        <p class="text-xs sm:text-sm text-humo">
+          Resuelve dudas en segundos: descubre la cafetera para tu rutina o mide tus ratios y tiempos al gramo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <div class="p-8 rounded-lg bg-white border border-espresso/10 flex flex-col justify-between shadow-sm">
+          <div>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-crema text-espresso font-mono">
+              Test interactivo
+            </span>
+            <h3 class="font-display text-2xl text-espresso mt-3 mb-2">
+              Tu cafetera en 4 preguntas
+            </h3>
+            <p class="text-sm text-humo leading-relaxed mb-6">
+              ¿No sabes si elegir V60, moka, AeroPress o prensa francesa? Responde 4 preguntas sobre tu consumo, tiempo matutino y presupuesto para recibir una recomendación con motivos claros.
+            </p>
+          </div>
+          <a
+            href="/herramientas#quiz"
+            class="inline-flex items-center justify-center px-6 py-3.5 rounded-pill bg-cereza-oscura text-porcelana font-semibold text-xs hover:bg-cereza-profunda transition-all min-h-[44px]"
+          >
+            Hacer el quiz en 1 minuto
+          </a>
+        </div>
+
+        <div class="p-8 rounded-lg bg-white border border-espresso/10 flex flex-col justify-between shadow-sm">
+          <div>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-cereza-oscura text-porcelana font-mono">
+              Precisión de extracción
+            </span>
+            <h3 class="font-display text-2xl text-espresso mt-3 mb-2">
+              Calculadora de ratio y temporizador
+            </h3>
+            <p class="text-sm text-humo leading-relaxed mb-6">
+              Introduce cuántos gramos de café o mililitros de agua tienes y obtén al instante las proporciones exactas con cronómetro por fases (floración, vertido y vaciado).
+            </p>
+          </div>
+          <a
+            href="/herramientas#calculadora"
+            class="inline-flex items-center justify-center px-6 py-3.5 rounded-pill border border-cereza-oscura text-cereza-oscura font-semibold text-xs hover:bg-cereza-oscura hover:text-porcelana transition-all min-h-[44px]"
+          >
+            Abrir calculadora de ratio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* SECCIÓN 6: NEWSLETTER — La receta del domingo */}
+  <section class="w-full py-16 bg-cereza-profunda text-porcelana border-t border-porcelana/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
+        Boletín semanal
+      </span>
+      <h2 class="font-display text-3xl sm:text-4xl text-porcelana mt-1 mb-3">
+        La receta del domingo
+      </h2>
+      <p class="text-xs sm:text-sm text-humo-claro max-w-lg mx-auto mb-8 leading-relaxed">
+        Cada domingo a primera hora compartimos un ajuste de molienda, una receta calibrada o un truco práctico para tu cocina. Cero spam publicitario y sin enlaces de afiliados en tu bandeja de entrada.
+      </p>
+
+      <NewsletterForm client:idle />
+    </div>
+  </section>
+</BaseLayout>

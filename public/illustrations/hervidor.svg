@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hervidor cuello de cisne -->
+  <path d="M 50 125 L 110 125 C 105 75 95 65 80 65 C 65 65 55 75 50 125 Z" />
+  <path d="M 68 65 L 68 55 C 68 52 92 52 92 55 L 92 65" />
+  <circle cx="80" cy="50" r="4" fill="currentColor" />
+  <path d="M 53 105 C 30 100 20 60 40 40 L 45 43" />
+  <path d="M 105 80 C 125 80 135 95 130 115" />
+</svg>

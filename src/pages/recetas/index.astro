@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const recetas = [
+  {
+    problema: 'El café sabe amargo, seco y raspa la lengua',
+    metodo: 'Todos los métodos',
+    causa: 'Sobreextracción de compuestos fenólicos pesados.',
+    solucion: 'Muele 2 clics más grueso, baja la temperatura del agua a 90 °C o reduce el tiempo de contacto en 30 segundos.',
+    guiaLink: '/guias/01-cafe-amargo-soluciones',
+  },
+  {
+    problema: 'El café sabe agrio, ácido como limón verde y sin dulzor',
+    metodo: 'V60 / AeroPress / Espresso',
+    causa: 'Subextracción: el agua no logró disolver los azúcares y lípidos.',
+    solucion: 'Muele más fino, usa agua más caliente (94–96 °C) o aumenta ligeramente el tiempo de contacto.',
+    guiaLink: '/guias/02-ratio-cafe-agua-tabla',
+  },
+  {
+    problema: 'Sabor a ceniza o quemado en cafetera moka',
+    metodo: 'Cafetera italiana / Moka',
+    causa: 'El café molido se hornea en seco mientras hierve el agua fría de la base.',
+    solucion: 'Llena el depósito con agua previamente caliente, mantén el fuego al mínimo y retira en cuanto comience a borbotear.',
+    guiaLink: '/guias/03-cafetera-italiana-sabor-quemado',
+  },
+  {
+    problema: 'El agua no drena en el cono V60 y tarda más de 4 minutos',
+    metodo: 'V60 / Kalita',
+    causa: 'Exceso de partículas microscópicas (finos) que obstruyen los poros del papel.',
+    solucion: 'Evita molinillos de aspas y usa muelas cónicas de acero mecanizado para lograr un tamaño homogéneo.',
+    guiaLink: '/guias/04-v60-principiantes-paso-a-paso',
+  },
+  {
+    problema: 'La prensa francesa deja un fondo arenoso y lodo en la taza',
+    metodo: 'Prensa francesa',
+    causa: 'Bajar el émbolo con violencia o agitar antes de servir.',
+    solucion: 'Tras 4 minutos de reposo, rompe la costra, retira la espuma y baja la rejilla solo hasta la superficie sin prensar el fondo.',
+    guiaLink: '/guias/05-prensa-francesa-receta-4-minutos',
+  },
+  {
+    problema: 'La leche espumada queda seca con burbujas de jabón grandes',
+    metodo: 'Espumador / Prensa',
+    causa: 'Leche sobrecalentada a más de 70 °C o inyección de aire descontrolada.',
+    solucion: 'Calienta la leche solo a 60–65 °C, bate cerca del fondo y da golpes secos sobre la mesa girando la jarra.',
+    guiaLink: '/guias/09-como-montar-leche-en-casa',
+  },
+];
+---
+
+<BaseLayout
+  title="Recetas rápidas de café — Tazamo"
+  description="Soluciones directas en formato problema → solución para ajustar tu molienda, agua y técnica en segundos."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Recetas', url: '/recetas' },
+  ]}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="max-w-2xl mb-12">
+      <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+        Diagnóstico rápido
+      </span>
+      <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-3">
+        Recetas y correcciones
+      </h1>
+      <p class="text-sm text-humo leading-relaxed">
+        Cuando el café no sale como esperabas, no cambies todo a ciegas: localiza el síntoma y aplica el ajuste puntual en tu próxima taza.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {recetas.map((r) => (
+        <article class="bg-white p-6 rounded-lg border border-espresso/10 hover:border-cereza-oscura/40 transition-all shadow-sm flex flex-col justify-between">
+          <div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-porcelana text-humo border border-espresso/10 inline-block mb-3">
+              {r.metodo}
+            </span>
+
+            <h2 class="font-display text-xl text-cereza-oscura mb-2">
+              {r.problema}
+            </h2>
+
+            <div class="space-y-2 text-xs leading-relaxed mb-4">
+              <p>
+                <strong class="text-espresso">Causa:</strong>{' '}
+                <span class="text-humo">{r.causa}</span>
+              </p>
+              <div class="p-3 rounded bg-porcelana border-l-2 border-crema">
+                <strong class="text-espresso block mb-0.5">Ajuste recomendado:</strong>
+                <span class="text-espresso/90">{r.solucion}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-espresso/10">
+            <a
+              href={r.guiaLink}
+              class="text-xs font-semibold text-cereza-oscura hover:underline inline-flex items-center gap-1"
+            >
+              Ver guía detallada →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

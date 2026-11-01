@@ -1,0 +1,38 @@
+{
+  "id": "molinillo-manual-c2",
+  "nombre": "Molinillo manual de muelas de acero",
+  "marca": "Timemore / C2",
+  "categoria": "molinillos-manuales",
+  "categoriaLabel": "Molinillos manuales",
+  "metodos": ["v60", "aeropress", "prensa-francesa", "moka"],
+  "nivel": "intermedio",
+  "tueste": "claro",
+  "idealPara": "Quienes quieren molienda consistente para filtro sin pagar el precio de un molino eléctrico profesional.",
+  "razones": [
+    "Muelas cónicas de acero inoxidable mecanizadas por CNC que reducen al mínimo los finos amargos.",
+    "Ajuste táctil por clics de alta precisión con excelente repetibilidad entre métodos.",
+    "Cuerpo de aluminio estriado con agarre firme y rodamiento dual suave."
+  ],
+  "contras": [
+    "Capacidad limitada a 25 g por lote (ideal para 1 o 2 tazas).",
+    "No está diseñado para molienda de espresso comercial hiperfina."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "ambas",
+    "tiempo": "ritual",
+    "presupuesto": "medio"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/molinillo-manual.svg",
+    "alt": "Ilustración lineal de molinillo manual de acero",
+    "fuente": "ilustracion"
+  },
+  "orden": 1
+}

@@ -1,0 +1,38 @@
+{
+  "id": "prensa-francesa-vidrio",
+  "nombre": "Cafetera de émbolo de vidrio borosilicato",
+  "marca": "Bodum / Chambord",
+  "categoria": "cafeteras",
+  "categoriaLabel": "Cafeteras",
+  "metodos": ["prensa-francesa", "cold-brew"],
+  "nivel": "principiante",
+  "tueste": "medio",
+  "idealPara": "Cafés con gran cuerpo y textura redonda que no requieren filtros de papel desechables.",
+  "razones": [
+    "Filtro de malla de acero de tres piezas que retiene los posos sin filtrar los aceites aromáticos.",
+    "Jarra de vidrio de borosilicato resistente a cambios bruscos de temperatura.",
+    "Preparación sumamente sencilla e infalible en solo cuatro minutos de infusión."
+  ],
+  "contras": [
+    "Deja un sedimento fino natural en el fondo de la taza si la molienda no es uniforme.",
+    "El vidrio requiere lavado cuidadoso para evitar fisuras por golpes con cubiertos metálicos."
+  ],
+  "perfil": {
+    "consumo": "3-4",
+    "leche": "ambas",
+    "tiempo": "rapido",
+    "presupuesto": "bajo"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/prensa-francesa.svg",
+    "alt": "Ilustración lineal de prensa francesa de vidrio",
+    "fuente": "ilustracion"
+  },
+  "orden": 4
+}

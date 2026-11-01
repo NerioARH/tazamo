@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BarraFilter from '../../components/interactive/BarraFilter';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allProducts = await getCollection('equipo');
+  const categorias = Array.from(new Set(allProducts.map((p) => p.data.categoria)));
+
+  return categorias.map((cat) => ({
+    params: { categoria: cat },
+    props: {
+      categoria: cat,
+      products: allProducts.filter((p) => p.data.categoria === cat).map((p) => p.data),
+    },
+  }));
+}
+
+const { categoria, products } = Astro.props;
+
+const formatCategoryTitle = (cat: string) => {
+  switch (cat) {
+    case 'molinillos-manuales': return 'Mejores molinillos manuales';
+    case 'basculas': return 'Mejores básculas con cronómetro';
+    case 'hervidores': return 'Mejores hervidores de cuello de cisne';
+    case 'cafeteras': return 'Cafeteras esenciales recomendadas';
+    case 'espumadores': return 'Mejores espumadores de leche';
+    default: return `Equipo para café: ${cat}`;
+  }
+};
+
+const title = formatCategoryTitle(categoria);
+---
+
+<BaseLayout
+  title={`${title} — Tazamo`}
+  description={`Selección editorial y análisis técnico de ${title.toLowerCase()} para café en casa, con pros y contras reales.`}
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'La Barra', url: '/equipo' },
+    { name: title, url: `/equipo/${categoria}` },
+  ]}
+>
+  <div class="w-full bg-cereza-oscura text-porcelana py-12 sm:py-16 border-b border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
+          Selección por categoría
+        </span>
+        <h1 class="font-display text-4xl sm:text-5xl text-porcelana mt-1 mb-3">
+          {title}
+        </h1>
+        <p class="text-sm text-humo-claro leading-relaxed">
+          Revisión técnica de modelos de referencia. Consulta las razones de compra y las advertencias de uso antes de acudir a la tienda.
+        </p>
+      </div>
+
+      <BarraFilter client:idle initialProducts={products} isShelf={false} showFilters={false} />
+    </div>
+  </div>
+</BaseLayout>

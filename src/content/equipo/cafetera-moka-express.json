@@ -1,0 +1,38 @@
+{
+  "id": "cafetera-moka-express",
+  "nombre": "Cafetera italiana tradicional octogonal",
+  "marca": "Bialetti / Moka Express 3 Tazas",
+  "categoria": "cafeteras",
+  "categoriaLabel": "Cafeteras",
+  "metodos": ["moka"],
+  "nivel": "principiante",
+  "tueste": "medio",
+  "idealPara": "Amantes del café denso de sobremesa o la base clásica para capuchinos caseros.",
+  "razones": [
+    "Diseño octogonal en aluminio fundido para difusión homogénea del calor en toda la base.",
+    "Válvula de seguridad patentada fácil de inspeccionar y limpiar con regularidad.",
+    "Cuerpo robusto casi indestructible que dura décadas con el recambio básico de junta."
+  ],
+  "contras": [
+    "No apta para placas de inducción directa sin adaptador ferromagnético.",
+    "Exige retirar del fuego en cuanto comience a borbotear para no sobrecalentar el café."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "si",
+    "tiempo": "rapido",
+    "presupuesto": "bajo"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/moka.svg",
+    "alt": "Ilustración lineal de cafetera italiana moka",
+    "fuente": "ilustracion"
+  },
+  "orden": 6
+}

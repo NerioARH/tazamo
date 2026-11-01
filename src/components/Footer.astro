@@ -1,0 +1,72 @@
+---
+import { SITE, AFFILIATE_DISCLOSURE } from '../config';
+---
+
+<footer class="w-full bg-cereza-profunda text-porcelana pt-16 pb-12 border-t border-porcelana/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-porcelana/15">
+      {/* Columna Marca */}
+      <div class="md:col-span-5 space-y-4">
+        <a href="/" class="inline-block" aria-label="Tazamo - Ir a la portada">
+          <img
+            src="/brand/tazamo-logo-reverso.svg"
+            alt="Tazamo"
+            class="h-8 w-auto"
+            width="130"
+            height="34"
+          />
+        </a>
+        <p class="text-xs text-humo-claro leading-relaxed max-w-sm">
+          {SITE.tagline}. Sitio editorial independiente con guías honestas, recetas precisas y selección de equipo para quienes preparan café de especialidad en su cocina.
+        </p>
+      </div>
+
+      {/* Columna Navegación */}
+      <div class="md:col-span-3 space-y-2 text-xs">
+        <h4 class="font-bold uppercase tracking-wider text-crema font-mono mb-3">
+          Explorar
+        </h4>
+        <ul class="space-y-2 text-humo-claro">
+          <li><a href="/metodos" class="hover:text-porcelana transition-colors">Hub de Métodos</a></li>
+          <li><a href="/guias" class="hover:text-porcelana transition-colors">Todas las Guías</a></li>
+          <li><a href="/equipo" class="hover:text-porcelana transition-colors">La Barra de Equipo</a></li>
+          <li><a href="/herramientas" class="hover:text-porcelana transition-colors">Quiz y Calculadoras</a></li>
+          <li><a href="/recetas" class="hover:text-porcelana transition-colors">Recetas cortas</a></li>
+        </ul>
+      </div>
+
+      {/* Columna Legal y Transparencia */}
+      <div class="md:col-span-4 space-y-2 text-xs">
+        <h4 class="font-bold uppercase tracking-wider text-crema font-mono mb-3">
+          Transparencia
+        </h4>
+        <ul class="space-y-2 text-humo-claro">
+          <li><a href="/sobre" class="hover:text-porcelana transition-colors">Sobre Tazamo</a></li>
+          <li><a href="/como-elegimos" class="hover:text-porcelana transition-colors">Criterio editorial de pruebas</a></li>
+          <li><a href="/aviso-de-afiliados" class="hover:text-porcelana transition-colors">Aviso legal de afiliados</a></li>
+          <li><a href="/privacidad" class="hover:text-porcelana transition-colors">Política de privacidad</a></li>
+          <li><a href="/contacto" class="hover:text-porcelana transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Declaración oficial de afiliados de Amazon Associates */}
+    <div class="pt-8 space-y-4 text-xs text-humo-claro">
+      <div class="p-4 rounded bg-cereza-oscura/80 border border-porcelana/10 text-[11px] leading-relaxed">
+        <span class="font-semibold text-crema block mb-1">Aviso de transparencia comercial:</span>
+        <p>{AFFILIATE_DISCLOSURE}</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-[11px]">
+        <p>© {new Date().getFullYear()} Tazamo. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="/aviso-de-afiliados" class="hover:underline">Aviso legal</a>
+          <span>·</span>
+          <a href="/privacidad" class="hover:underline">Privacidad</a>
+          <span>·</span>
+          <a href="/contacto" class="hover:underline">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBar from '../components/interactive/SearchBar';
+import { LISTA_METODOS } from '../config';
+---
+
+<BaseLayout
+  title="Página no encontrada (404) — Tazamo"
+  description="La página que buscas no existe o ha sido movida. Encuentra lo que necesitas con nuestro buscador o explorando los 6 métodos de café."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center text-espresso">
+    <div class="w-16 h-16 rounded-cup bg-cereza-oscura text-crema font-display text-3xl font-bold flex items-center justify-center mx-auto mb-6 shadow-md">
+      404
+    </div>
+
+    <h1 class="font-display text-3xl sm:text-4xl text-espresso mb-3">
+      Esta taza está vacía
+    </h1>
+    <p class="text-sm text-humo leading-relaxed max-w-lg mx-auto mb-8">
+      La página que buscas ha cambiado de sitio o el enlace es incorrecto. No te preocupes: puedes encontrar cualquier guía con el buscador o explorar directamente tu método favorito.
+    </p>
+
+    {/* Buscador centrado */}
+    <div class="flex justify-center mb-12">
+      <SearchBar client:load />
+    </div>
+
+    {/* Acceso a los 6 métodos */}
+    <div class="pt-8 border-t border-espresso/10">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-humo font-mono mb-4">
+        Explora los 6 métodos de café:
+      </h2>
+      <div class="flex flex-wrap justify-center gap-2">
+        {LISTA_METODOS.map((m) => (
+          <a
+            href={`/metodos/${m.id}`}
+            class="px-4 py-2 rounded-pill bg-white border border-espresso/15 text-xs font-semibold hover:border-cereza-oscura hover:text-cereza-oscura transition-colors min-h-[40px] flex items-center"
+          >
+            {m.nombre}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,75 @@
+@import '@fontsource/gloock/400.css';
+@import '@fontsource/figtree/400.css';
+@import '@fontsource/figtree/500.css';
+@import '@fontsource/figtree/600.css';
+@import '@fontsource/figtree/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cereza-oscura: #3A0E22;
+    --color-cereza-profunda: #24081A;
+    --color-crema: #E8A838;
+    --color-porcelana: #F4F6F3;
+    --color-espresso: #1F1410;
+    --color-humo: #6B5B63;
+    --color-humo-claro: #CDBFC6;
+    --color-tueste-crudo: #8FA86B;
+    --color-tueste-claro: #E8A838;
+    --color-tueste-medio: #B9702E;
+    --color-tueste-oscuro: #6A3B20;
+    --color-tueste-espresso: #2A1810;
+  }
+
+  html {
+    font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-porcelana);
+    color: var(--color-espresso);
+    scroll-behavior: smooth;
+  }
+
+  /* Cifras numéricas tabulares obligatorias para datos de café */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Accesibilidad y foco de teclado visible */
+  :focus-visible {
+    outline: 3px solid var(--color-crema);
+    outline-offset: 2px;
+  }
+
+  /* Respeto estricto a reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Tipografía de títulos */
+h1, h2, h3, .font-display {
+  font-family: 'Gloock', Georgia, serif;
+}
+
+/* Estilos de scrollbar sobria */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F6F3;
+}
+::-webkit-scrollbar-thumb {
+  background: #CDBFC6;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B5B63;
+}

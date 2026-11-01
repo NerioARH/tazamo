@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { amazonLink, AFFILIATE_DISCLOSURE, AFFILIATE_BADGE_TEXT } from '../../config';
+
+export async function getStaticPaths() {
+  const guias = await getCollection('guias');
+  return guias.map((guia) => ({
+    params: { slug: guia.id },
+    props: { guia },
+  }));
+}
+
+const { guia } = Astro.props;
+const { Content } = await render(guia);
+
+// Buscar productos recomendados según equipoIds
+const allProducts = await getCollection('equipo');
+const recommendedProducts = allProducts.filter(
+  (p) => guia.data.equipoIds.includes(p.data.id) || p.data.metodos.includes(guia.data.metodo)
+).slice(0, 3);
+
+// Guías relacionadas para enlazado interno
+const allGuias = await getCollection('guias');
+const guiasRelacionadas = allGuias
+  .filter((g) => g.id !== guia.id && (g.data.metodo === guia.data.metodo || g.data.metodo === 'general'))
+  .slice(0, 2);
+---
+
+<BaseLayout
+  title={`${guia.data.titulo} — Tazamo`}
+  description={guia.data.descripcion}
+  articleData={{
+    publishedTime: guia.data.fechaPublicacion,
+    modifiedTime: guia.data.fechaActualizacion,
+    author: guia.data.autor,
+  }}
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Guías', url: '/guias' },
+    { name: guia.data.titulo, url: `/guias/${guia.id}` },
+  ]}
+>
+  <article class="w-full py-12 sm:py-16 bg-porcelana">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {/* Cabecera del Artículo */}
+      <header class="mb-10 pb-8 border-b border-espresso/10">
+        <div class="flex items-center gap-2 mb-3 text-xs">
+          <a
+            href={guia.data.metodo !== 'general' ? `/metodos/${guia.data.metodo}` : '/guias'}
+            class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-cereza-oscura text-porcelana font-mono hover:bg-cereza-profunda transition-colors"
+          >
+            {guia.data.metodo}
+          </a>
+          <span class="text-humo">·</span>
+          <span class="text-humo">{guia.data.tiempoLectura} de lectura</span>
+          {guia.data.borrador && (
+            <span className="px-2 py-0.5 rounded bg-crema/20 text-espresso text-[10px] font-mono font-medium">
+              Borrador editorial
+            </span>
+          )}
+        </div>
+
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl text-espresso leading-tight mb-4">
+          {guia.data.titulo}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-humo">
+          <span>Por <strong class="text-espresso font-semibold">{guia.data.autor}</strong></span>
+          <span>·</span>
+          <time datetime={guia.data.fechaPublicacion}>
+            Publicado el {new Date(guia.data.fechaPublicacion).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+          <span>·</span>
+          <span>
+            Actualizado el {new Date(guia.data.fechaActualizacion).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </span>
+        </div>
+      </header>
+
+      {/* Bloque: RESPUESTA RÁPIDA (2–4 líneas) */}
+      <div class="p-6 rounded-lg bg-white border-l-4 border-crema shadow-sm mb-10">
+        <span class="text-xs uppercase font-bold tracking-wider text-cereza-oscura font-mono block mb-1">
+          Respuesta rápida
+        </span>
+        <p class="text-sm sm:text-base text-espresso leading-relaxed">
+          {guia.data.respuestaRapida}
+        </p>
+      </div>
+
+      {/* Aviso de afiliados discreto cerca del primer bloque de compra */}
+      <div class="p-3.5 rounded bg-cereza-oscura/5 border border-espresso/10 text-[11px] text-humo mb-10 flex items-start gap-2">
+        <span class="text-crema font-bold shrink-0">ℹ</span>
+        <p class="leading-relaxed">
+          <strong>Aviso de transparencia:</strong> Este artículo contiene enlaces de compra hacia Amazon asociados a nuestro criterio editorial. Si compras a través de ellos, recibimos una pequeña comisión sin coste extra para ti.
+        </p>
+      </div>
+
+      {/* Cuerpo del Artículo (Markdown/MDX con cifras tabulares y ritmo editorial) */}
+      <div class="prose prose-stone max-w-none text-base text-espresso/90 leading-relaxed space-y-6">
+        <Content />
+      </div>
+
+      {/* SECCIÓN OBLIGATORIA: EQUIPO QUE RECOMENDAMOS (con contras reales) */}
+      {recommendedProducts.length > 0 && (
+        <section class="mt-14 pt-10 border-t border-espresso/15">
+          <div class="mb-6">
+            <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+              Recomendación técnica
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl text-espresso mt-1">
+              Equipo que recomendamos para este método
+            </h2>
+            <p class="text-xs sm:text-sm text-humo mt-1">
+              Herramientas probadas para mantener la repetibilidad de la receta, con sus limitaciones reales.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recommendedProducts.map((p) => (
+              <div class="bg-white rounded-lg p-5 border border-espresso/15 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-porcelana text-humo">
+                      {p.data.marca}
+                    </span>
+                    <span class="text-[10px] text-humo uppercase font-mono font-bold">
+                      {p.data.nivel}
+                    </span>
+                  </div>
+
+                  <h3 class="font-display text-lg text-espresso mb-1">
+                    {p.data.nombre}
+                  </h3>
+
+                  <p class="text-xs text-humo italic mb-3">
+                    «{p.data.idealPara}»
+                  </p>
+
+                  <ul class="text-xs text-espresso/90 space-y-1 mb-3">
+                    {p.data.razones.slice(0, 2).map((r) => (
+                      <li class="flex items-start gap-1.5">
+                        <span class="text-crema shrink-0">•</span>
+                        <span>{r}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {p.data.contras.length > 0 && (
+                    <div class="p-2 rounded bg-porcelana text-[11px] text-humo mb-4 border border-espresso/5">
+                      <strong class="text-espresso block mb-0.5">Contra:</strong>
+                      <span>{p.data.contras[0]}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div class="pt-3 border-t border-espresso/10">
+                  <a
+                    href={amazonLink(p.data.asin.es, 'es')}
+                    target="_blank"
+                    rel="sponsored nofollow noopener"
+                    class="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded bg-crema text-espresso font-semibold text-xs hover:brightness-105 transition-all min-h-[44px]"
+                  >
+                    <span>Ver en Amazon</span>
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                  <span class="text-[10px] text-humo block text-center mt-1.5">
+                    {AFFILIATE_BADGE_TEXT}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* SECCIÓN OBLIGATORIA: CÓMO LO SABEMOS (Honesto) */}
+      <section class="mt-12 p-6 sm:p-8 rounded-lg bg-cereza-profunda text-porcelana border border-porcelana/10">
+        <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono block mb-1">
+          Transparencia editorial
+        </span>
+        <h2 class="font-display text-2xl text-porcelana mb-2">
+          Cómo lo sabemos
+        </h2>
+        <p class="text-xs sm:text-sm text-humo-claro leading-relaxed">
+          {guia.data.comoLoSabemos}
+        </p>
+      </section>
+
+      {/* SECCIÓN OBLIGATORIA: 3 PREGUNTAS FRECUENTES (En HTML normal sin microdatos inventados) */}
+      {guia.data.faq && guia.data.faq.length > 0 && (
+        <section class="mt-14 pt-10 border-t border-espresso/15">
+          <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+            Dudas recurrentes
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl text-espresso mt-1 mb-6">
+            Preguntas frecuentes
+          </h2>
+
+          <div class="space-y-4">
+            {guia.data.faq.map((f) => (
+              <div class="bg-white p-5 rounded-lg border border-espresso/10">
+                <h3 class="font-display text-lg text-espresso mb-2">
+                  {f.pregunta}
+                </h3>
+                <p class="text-xs sm:text-sm text-humo leading-relaxed">
+                  {f.respuesta}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ENLACES INTERNOS OBLIGATORIOS (Hub del método, 2 guías relacionadas, 1 a la barra filtrada) */}
+      <section class="mt-14 pt-8 border-t border-espresso/15">
+        <h3 class="text-xs uppercase font-bold tracking-wider text-humo font-mono mb-4">
+          Continuar aprendiendo
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          {guia.data.metodo !== 'general' && (
+            <a
+              href={`/metodos/${guia.data.metodo}`}
+              class="p-4 rounded bg-white border border-espresso/10 hover:border-cereza-oscura transition-colors block"
+            >
+              <span class="text-humo block mb-1">Hub del método</span>
+              <strong class="text-cereza-oscura font-semibold text-sm">
+                Guía completa de {guia.data.metodo} →
+              </strong>
+            </a>
+          )}
+          <a
+            href={`/equipo?metodo=${guia.data.metodo}`}
+            class="p-4 rounded bg-white border border-espresso/10 hover:border-cereza-oscura transition-colors block"
+          >
+            <span class="text-humo block mb-1">La Barra</span>
+            <strong class="text-cereza-oscura font-semibold text-sm">
+              Todo el equipo para {guia.data.metodo} →
+            </strong>
+          </a>
+          {guiasRelacionadas.map((rel) => (
+            <a
+              href={`/guias/${rel.id}`}
+              class="p-4 rounded bg-white border border-espresso/10 hover:border-cereza-oscura transition-colors block"
+            >
+              <span class="text-humo block mb-1">Guía relacionada</span>
+              <strong class="text-cereza-oscura font-semibold text-sm">
+                {rel.data.titulo} →
+              </strong>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

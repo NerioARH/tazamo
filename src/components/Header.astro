@@ -1,0 +1,46 @@
+---
+import SearchBar from './interactive/SearchBar';
+---
+
+<header class="w-full bg-porcelana/95 backdrop-blur-md border-b border-espresso/10 sticky top-0 z-30 transition-all duration-base">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4 py-3">
+    {/* Logo principal */}
+    <a href="/" class="flex items-center gap-2 group focus:outline-none" aria-label="Tazamo - Ir a la portada">
+      <img
+        src="/brand/tazamo-logo-principal.svg"
+        alt="Tazamo - Tu barra de café en casa"
+        class="h-8 sm:h-9 w-auto"
+        width="140"
+        height="36"
+      />
+    </a>
+
+    {/* Navegación editorial de 4 enlaces */}
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-espresso" aria-label="Navegación principal">
+      <a href="/guias" class="hover:text-cereza-oscura transition-colors py-1">
+        Guías
+      </a>
+      <a href="/metodos" class="hover:text-cereza-oscura transition-colors py-1">
+        Métodos
+      </a>
+      <a href="/equipo" class="hover:text-cereza-oscura transition-colors py-1">
+        La Barra
+      </a>
+      <a href="/herramientas" class="hover:text-cereza-oscura transition-colors py-1">
+        Herramientas
+      </a>
+    </nav>
+
+    {/* Acciones: Buscador y Botón «Encontrar mi método» */}
+    <div class="flex items-center gap-3">
+      <SearchBar client:idle />
+
+      <a
+        href="/herramientas#quiz"
+        class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-pill bg-crema text-espresso font-semibold text-xs hover:brightness-105 transition-all duration-fast shadow-sm min-h-[40px]"
+      >
+        Encontrar mi método
+      </a>
+    </div>
+  </div>
+</header>

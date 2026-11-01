@@ -1,0 +1,38 @@
+{
+  "id": "bascula-digital-cronometro",
+  "nombre": "Báscula digital con cronómetro integrado",
+  "marca": "Timemore / Black Mirror Basic",
+  "categoria": "basculas",
+  "categoriaLabel": "Básculas",
+  "metodos": ["v60", "aeropress", "prensa-francesa", "espresso"],
+  "nivel": "principiante",
+  "tueste": "claro",
+  "idealPara": "Controlar con rigor la receta de café y agua en tiempo real con cifras legibles.",
+  "razones": [
+    "Precisión al décimo de gramo (0,1 g) con respuesta de pesaje prácticamente instantánea.",
+    "Cronómetro simultáneo incorporado con pantalla táctil invisible al apagarse.",
+    "Batería interna de litio recargable por USB-C y almohadilla de silicona aislante térmica."
+  ],
+  "contras": [
+    "Botones táctiles muy sensibles al contacto accidental con agua.",
+    "Superficie ancha que puede no caber en bandejas de goteo de cafeteras espresso compactas."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "ambas",
+    "tiempo": "ritual",
+    "presupuesto": "medio"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/bascula.svg",
+    "alt": "Ilustración lineal de báscula digital con cronómetro",
+    "fuente": "ilustracion"
+  },
+  "orden": 2
+}

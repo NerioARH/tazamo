@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BarraFilter from '../../components/interactive/BarraFilter';
+import { METODOS, LISTA_METODOS, type MetodoData } from '../../config';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return LISTA_METODOS.map((m) => ({
+    params: { metodo: m.id },
+  }));
+}
+
+const { metodo: metodoId } = Astro.params;
+const metodo: MetodoData = METODOS[metodoId as string] || METODOS.v60;
+
+// Artículos de esta categoría
+const allGuias = await getCollection('guias');
+const guiasRelacionadas = allGuias.filter(
+  (g) => g.data.metodo === metodo.id || g.data.metodo === 'general'
+);
+
+// Productos para este método
+const allProducts = await getCollection('equipo');
+const productosRelacionados = allProducts
+  .filter((p) => p.data.metodos.includes(metodo.id))
+  .map((p) => p.data);
+---
+
+<BaseLayout
+  title={`Guía de ${metodo.nombre} — Tazamo`}
+  description={`Domina la extracción en ${metodo.nombre}: ratio ${metodo.ratio}, molienda ${metodo.molienda}, tiempo recomendado y equipo evaluado.`}
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Métodos', url: '/metodos' },
+    { name: metodo.nombre, url: `/metodos/${metodo.id}` },
+  ]}
+>
+  {/* Cabecera Técnica del Método */}
+  <section class="w-full bg-cereza-oscura text-porcelana py-12 sm:py-16 border-b border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 mb-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-crema"></span>
+          <span class="text-xs font-bold uppercase tracking-wider text-humo-claro font-mono">
+            Guía madre de método
+          </span>
+        </div>
+
+        <h1 class="font-display text-4xl sm:text-5xl text-porcelana mb-4">
+          {metodo.nombre}
+        </h1>
+
+        <p class="text-base sm:text-lg text-humo-claro leading-relaxed mb-8">
+          {metodo.descripcionCorta}
+        </p>
+
+        {/* Ficha técnica de partida */}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-md bg-cereza-profunda/70 border border-porcelana/10">
+          <div>
+            <span class="text-xs text-humo-claro block mb-0.5">Ratio sugerido</span>
+            <span class="font-display text-xl text-porcelana tabular-nums">{metodo.ratio}</span>
+          </div>
+          <div>
+            <span class="text-xs text-humo-claro block mb-0.5">Molienda</span>
+            <span class="font-display text-xl text-porcelana">{metodo.molienda}</span>
+          </div>
+          <div>
+            <span class="text-xs text-humo-claro block mb-0.5">Tiempo medio</span>
+            <span class="font-display text-xl text-porcelana tabular-nums">{metodo.tiempo}</span>
+          </div>
+          <div>
+            <span class="text-xs text-humo-claro block mb-0.5">Temperatura</span>
+            <span class="font-display text-xl text-porcelana text-sm sm:text-base">{metodo.temperatura}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Guía Madre / Pasos y Técnica */}
+  <section class="w-full py-16 bg-porcelana">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-8 space-y-8">
+          <div class="bg-white p-6 sm:p-8 rounded-lg border border-espresso/10 shadow-sm">
+            <h2 class="font-display text-2xl sm:text-3xl text-espresso mb-4">
+              Fundamentos de extracción en {metodo.nombre}
+            </h2>
+
+            <div class="prose prose-stone max-w-none text-sm text-espresso/90 leading-relaxed space-y-4">
+              <p>
+                Para obtener una taza equilibrada en <strong>{metodo.nombre}</strong> es imprescindible controlar la temperatura del agua y el grosor uniforme del grano. Los datos expuestos arriba deben tomarse como el <em>punto de partida</em> sobre el que ajustar la receta según tu café concreto.
+              </p>
+
+              <h3 class="font-display text-xl text-espresso mt-6 mb-2">
+                Dosis y proporciones de referencia
+              </h3>
+              <p>
+                Recomendamos iniciar con una dosis de <strong>{metodo.gramosSugeridos} g de café</strong> para <strong>{metodo.aguaSugerida} ml de agua</strong>. Si la bebida resultante sabe demasiado concentrada o amarga, aumenta el grosor de la molienda un paso; si sabe débil o ácida, afínala ligeramente.
+              </p>
+            </div>
+          </div>
+
+          {/* Guías y tutoriales específicos */}
+          <div>
+            <h3 class="font-display text-2xl text-espresso mb-4">
+              Artículos y tutoriales para {metodo.nombre}
+            </h3>
+            <div class="space-y-4">
+              {guiasRelacionadas.map((g) => (
+                <article class="bg-white p-5 rounded-md border border-espresso/10 hover:border-cereza-oscura/40 transition-colors flex items-center justify-between gap-4 group">
+                  <div>
+                    <h4 class="font-display text-lg text-espresso group-hover:text-cereza-oscura transition-colors">
+                      <a href={`/guias/${g.id}`}>
+                        {g.data.titulo}
+                      </a>
+                    </h4>
+                    <p class="text-xs text-humo mt-1 line-clamp-1">
+                      {g.data.descripcion}
+                    </p>
+                  </div>
+                  <span class="text-xs font-semibold text-cereza-oscura shrink-0">
+                    Leer →
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar: Accesos rápidos y calculadora */}
+        <div class="lg:col-span-4 space-y-6">
+          <div class="p-6 rounded-lg bg-white border border-espresso/10 shadow-sm text-xs">
+            <h4 class="font-display text-lg text-espresso font-semibold mb-2">
+              Herramientas para este método
+            </h4>
+            <p class="text-humo mb-4 leading-relaxed">
+              Calcula tus gramos exactos de café o inicia el cronómetro por fases ajustado a {metodo.nombre}.
+            </p>
+            <a
+              href="/herramientas"
+              class="block text-center py-2.5 px-4 rounded-md bg-cereza-oscura text-porcelana font-semibold hover:bg-cereza-profunda transition-colors min-h-[40px]"
+            >
+              Abrir Calculadora y Timer
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* La Barra de Equipo para este Método */}
+  <section class="w-full py-16 bg-cereza-oscura text-porcelana border-t border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-8">
+        <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
+          Selección editorial
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl text-porcelana mt-1">
+          Equipo evaluado para {metodo.nombre}
+        </h2>
+        <p class="text-xs text-humo-claro mt-1">
+          Herramientas recomendadas específicamente para este sistema, con sus contras reales.
+        </p>
+      </div>
+
+      <BarraFilter client:idle initialProducts={productosRelacionados} isShelf={false} showFilters={false} />
+    </div>
+  </section>
+</BaseLayout>

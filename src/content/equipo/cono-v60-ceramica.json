@@ -1,0 +1,38 @@
+{
+  "id": "cono-v60-ceramica",
+  "nombre": "Cono de goteo cerámico V60 tamaño 02",
+  "marca": "Hario / V60 Ceramic",
+  "categoria": "cafeteras",
+  "categoriaLabel": "Cafeteras",
+  "metodos": ["v60"],
+  "nivel": "intermedio",
+  "tueste": "claro",
+  "idealPara": "Destacar la acidez delicada, perfiles florales y notas afrutadas de orígenes únicos.",
+  "razones": [
+    "Ángulo cónico de 60 grados que fomenta un lecho de café profundo para extracción homogénea.",
+    "Nervaduras espirales internas que facilitan el flujo de aire y el drenaje sin atascos.",
+    "Masa térmica cerámica japonesa Arita-yaki de retención de calor insuperable."
+  ],
+  "contras": [
+    "Requiere precalentamiento previo con abundante agua caliente antes de infusionar.",
+    "Fragilidad inherente de la cerámica al transporte o caídas."
+  ],
+  "perfil": {
+    "consumo": "1-2",
+    "leche": "no",
+    "tiempo": "ritual",
+    "presupuesto": "bajo"
+  },
+  "asin": {
+    "us": "PENDIENTE",
+    "es": "PENDIENTE"
+  },
+  "probado": false,
+  "fechaRevision": "2026-10-31",
+  "imagen": {
+    "src": "/illustrations/v60.svg",
+    "alt": "Ilustración lineal de cono de goteo V60",
+    "fuente": "ilustracion"
+  },
+  "orden": 5
+}

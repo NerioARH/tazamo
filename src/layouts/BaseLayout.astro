@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PersistentMethodBar from '../components/interactive/PersistentMethodBar';
+import { SITE } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  articleData?: {
+    publishedTime: string;
+    modifiedTime: string;
+    author: string;
+  };
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
+const {
+  title = `${SITE.name} — ${SITE.tagline}`,
+  description = SITE.description,
+  ogImage = SITE.defaultOgImage,
+  articleData,
+  breadcrumbs,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tazamo.com');
+const fullOgImageUrl = new URL(ogImage, canonicalURL).href;
+
+// Estructura JSON-LD
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tazamo',
+  url: 'https://tazamo.com',
+  logo: 'https://tazamo.com/brand/tazamo-logo-principal.svg',
+  description: 'Guías de café de especialidad y equipo para el hogar.',
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Tazamo',
+  url: 'https://tazamo.com',
+};
+
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: b.name,
+    item: new URL(b.url, canonicalURL).href,
+  })),
+} : null;
+
+const articleSchema = articleData ? {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  image: fullOgImageUrl,
+  datePublished: articleData.publishedTime,
+  dateModified: articleData.modifiedTime,
+  author: {
+    '@type': 'Person',
+    name: articleData.author || SITE.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://tazamo.com/brand/tazamo-logo-principal.svg',
+    },
+  },
+} : null;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    {/* Favicon e iconos */}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#3A0E22" />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content={articleData ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImageUrl} />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullOgImageUrl} />
+
+    {/* Datos estructurados JSON-LD */}
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+    {articleSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    )}
+  </head>
+  <body class="bg-porcelana text-espresso flex flex-col min-h-screen selection:bg-crema selection:text-espresso">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <PersistentMethodBar client:idle />
+    <Footer />
+  </body>
+</html>

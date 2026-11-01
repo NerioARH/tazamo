@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BarraFilter from '../../components/interactive/BarraFilter';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('equipo');
+const productsData = allProducts.map((p) => p.data);
+---
+
+<BaseLayout
+  title="La Barra de Equipo — Tazamo"
+  description="Catálogo editorial de molinillos, básculas, cafeteras y hervidores para preparar café en casa sin compras innecesarias ni valoraciones falsas."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'La Barra', url: '/equipo' },
+  ]}
+>
+  <div class="w-full bg-cereza-oscura text-porcelana py-12 sm:py-16 border-b border-porcelana/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs uppercase font-bold tracking-wider text-crema font-mono">
+          Catálogo honesto
+        </span>
+        <h1 class="font-display text-4xl sm:text-5xl text-porcelana mt-1 mb-3">
+          La Barra de Equipo
+        </h1>
+        <p class="text-sm text-humo-claro leading-relaxed">
+          Cada herramienta ha sido elegida por su repetibilidad técnica y durabilidad. Sin precios fijos desactualizados ni estrellas infladas: consulta los contras reales antes de decidir.
+        </p>
+      </div>
+
+      <BarraFilter client:idle initialProducts={productsData} isShelf={false} showFilters={true} />
+    </div>
+  </div>
+</BaseLayout>

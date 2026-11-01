@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Espumador de leche de varilla manual -->
+  <rect x="70" y="20" width="20" height="60" rx="6" />
+  <line x1="80" y1="80" x2="80" y2="120" />
+  <circle cx="80" cy="130" r="12" />
+  <circle cx="80" cy="130" r="6" stroke-dasharray="2 3" />
+</svg>

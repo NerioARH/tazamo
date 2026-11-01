@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AFFILIATE_DISCLOSURE } from '../config';
+---
+
+<BaseLayout
+  title="Aviso de afiliados y transparencia — Tazamo"
+  description="Declaración de participación en el programa de Amazon Afiliados y normas de transparencia comercial de Tazamo."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Aviso de afiliados', url: '/aviso-de-afiliados' },
+  ]}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-espresso">
+    <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+      Marco legal
+    </span>
+    <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-6">
+      Aviso de afiliados y transparencia comercial
+    </h1>
+
+    <div class="prose prose-stone text-base leading-relaxed space-y-5">
+      <div class="p-5 rounded-md bg-white border-l-4 border-crema shadow-sm text-sm">
+        <strong class="text-cereza-oscura block mb-1">Declaración oficial:</strong>
+        <p>{AFFILIATE_DISCLOSURE}</p>
+      </div>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        Cómo funciona la afiliación en Tazamo
+      </h2>
+
+      <p>
+        Para mantener Tazamo libre de molestos anuncios invasivos en pantalla, muros de pago o suscripciones obligatorias, participamos en el programa de asociados de Amazon (Amazon Services LLC Associates Program / Programa de Afiliados de Amazon de la UE).
+      </p>
+
+      <p>
+        Cuando haces clic en un enlace de compra que conduce a Amazon.es o Amazon.com y realizas una compra válida, Amazon nos paga un pequeño porcentaje en concepto de comisión publicitaria.
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        Nuestros compromisos innegociables
+      </h2>
+
+      <ul class="space-y-3 text-sm">
+        <li>
+          <strong>No influye en el precio:</strong> El precio del producto en Amazon es exactamente el mismo accedas desde Tazamo o entrando directamente.
+        </li>
+        <li>
+          <strong>Sin precios desactualizados ni estrellas falsas:</strong> No publicamos precios estáticos que puedan confundirte; te remitimos a la ficha oficial donde Amazon mantiene el precio exacto en tiempo real.
+        </li>
+        <li>
+          <strong>Independencia de criterio:</strong> Si un producto popular es mediocre o frágil, lo decimos con claridad aunque venderlo diera más comisión.
+        </li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

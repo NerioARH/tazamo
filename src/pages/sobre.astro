@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre Tazamo — Tu barra de café en casa"
+  description="Conoce el origen de Tazamo: un sitio en español dedicado a quienes preparan café de especialidad en su cocina con rigor y honestidad."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Sobre nosotros', url: '/sobre' },
+  ]}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-espresso">
+    <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+      Nuestra historia
+    </span>
+    <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-6">
+      Sobre Tazamo
+    </h1>
+
+    <div class="prose prose-stone text-base leading-relaxed space-y-5">
+      <p>
+        El nombre <strong>Tazamo</strong> nace de la unión natural de «taza» y «amor». Nuestra misión es trasladar la experiencia, el rigor y la calidez de una barra de café de especialidad al mostrador de tu cocina.
+      </p>
+
+      <p>
+        Creemos que preparar un café extraordinario cada mañana no requiere gastar miles de euros en maquinaria industrial ni memorizar fórmulas incomprensibles. Requiere comprender los principios fundamentales de la extracción —ratio, molienda, temperatura y tiempo— y contar con herramientas honestas que cumplan su cometido día tras día.
+      </p>
+
+      <h2 class="font-display text-2xl text-espresso mt-8 mb-3">
+        Nuestra filosofía editorial
+      </h2>
+
+      <ul class="space-y-3 text-sm">
+        <li>
+          <strong>Rigor sin postureo:</strong> Explicamos la física y la química del café en español neutro, claro y accesible, huyendo de la jerga pretenciosa.
+        </li>
+        <li>
+          <strong>Honestidad comercial:</strong> Cuando recomendamos un molinillo o una báscula, señalamos siempre sus limitaciones y puntos débiles reales. No aceptamos patrocinios pagados que condicionen nuestro criterio.
+        </li>
+        <li>
+          <strong>Sostenibilidad:</strong> Apostamos por cafeteras mecánicas duraderas (como la moka, el cono cerámico o la prensa) que duren décadas y reduzcan los residuos de cápsulas desechables.
+        </li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
