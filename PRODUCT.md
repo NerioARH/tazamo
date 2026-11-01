@@ -6,68 +6,63 @@
 
 web
 
-## Mode
-
-brand (sitio editorial con tienda de afiliados, no es una app ni un panel SaaS)
-
 ## Users
 
-Aficionados y amantes del café hispanohablantes que preparan café en casa (mercados de compra: España en amazon.es y EE. UU. / Global en amazon.com).
+Aficionados y principiantes hispanohablantes que preparan café en su cocina (mercados prioritarios: España y Estados Unidos / Latinoamérica). 
 
-- **Situación:** Preparan café en su cocina (moka, prensa, V60, espresso, AeroPress o cold brew) y buscan elevar el resultado de su taza diaria sin caer en el postureo de barista ni gastar de más en maquinaria innecesaria.
-- **Trabajo del usuario (Jobs-to-be-Done):** Calibrar un método en segundos, solucionar problemas de sabor (amargor, sabor quemado, acidez punzante) y encontrar el equipo exacto con contras reales antes de comprar en Amazon.
+- **Situación:** Preparan café por la mañana o sobremesa en cafetera italiana, filtro manual, prensa o espresso básico, enfrentando resultados inconsistentes (café amargo, quemado o aguado) o dudas sobre qué equipamiento comprar sin gastar de más.
+- **Trabajo del usuario (Jobs-to-be-Done):** Calibrar su método en segundos, entender por qué falló su última taza y encontrar equipo fiable evaluado con sus pros y contras reales.
 
 ## Product Purpose
 
-Tazamo es la barra de café de una cafetería de especialidad trasladada a la cocina de casa.
-- **Recorrido del visitante:** No es un blog estático con banners; es un recorrido vivo donde el visitante calibra un método, aprende la técnica, explora el equipo específico y llega a la compra en Amazon de manera natural y sin fricción ni empujones comerciales.
-- **Objetivo de negocio:** Tráfico orgánico de calidad (SEO editorial) que genera compras cualificadas de afiliados en Amazon y suscriptores recurrentes al boletín dominical «La receta del domingo».
+Democratizar el café de especialidad trasladando el rigor y la experiencia de una barra profesional a la cocina doméstica.
+
+- **Para el usuario:** Servir como guía de referencia de cabecera con recetas exactas (ratios, gramos, tiempos y temperaturas) y herramientas interactivas que resuelven dudas al instante.
+- **Para el negocio:** Generar tráfico orgánico de calidad (SEO editorial) que convierta en compras cualificadas de afiliados en Amazon (sin trucos ni spam) y en lectores recurrentes del boletín semanal «La receta del domingo».
 
 ## Positioning
 
-Rigor de cafetería de especialidad en casa con honestidad comercial incondicional.
+Rigor técnico accesible con honestidad comercial innegociable.
 
-- **Frente a blogs genéricos de afiliados de IA:** Tazamo no inventa precios ni estrellas desactualizadas; señala contras reales y limitaciones para cada producto; y ofrece herramientas interactivas nativas (Dial de extracción, Quiz de cafetera, Calculadora con cronómetro).
-- **Frente al postureo barista elitista:** Explica la ciencia de la extracción en español neutro, directo y cercano, sin snobismo.
-
-## Anti-referencias estrictas (Prohibiciones de diseño)
-
-1. **PROHIBIDO:** Fondos crema con serif y acentos terracota de cafetería tradicional.
-2. **PROHIBIDO:** Verde tipo Starbucks o marrones apagados de cafetería genérica.
-3. **PROHIBIDO:** Tarjetas idénticas con sombra suave (patrón aburrido de plantilla web).
-4. **PROHIBIDO:** Mayúsculas espaciadas (kickers / eyebrows) sobre cada titular.
-5. **PROHIBIDO:** Flechas «→» al final de cada enlace o botón.
-6. **PROHIBIDO:** Animaciones de entrada fade-up en cada sección o hovers idénticos en cada tarjeta.
-7. **PROHIBIDO:** Precios, estrellas o stock inventados sin API en tiempo real.
-8. **PROHIBIDO:** Modificar o regenerar los logos originales de `brand/`.
+- Frente a blogs de afiliación masivos automatizados: Tazamo no inventa valoraciones con estrellas falsas, no oculta las limitaciones de los productos recomendados y publica contras explícitas para cada herramienta.
+- Frente a foros y comunidades de baristas hiperespecializadas: Tazamo traduce la química de la extracción al lenguaje cotidiano en español neutro, sin elitismo ni jerga innecesaria.
 
 ## Operating Context
 
-- **Uso en cocina:** Pantalla móvil sobre la encimera al lado de la cafetera o balanza; requiere cifras grandes tabulares legibles a distancia de brazo y botones táctiles $\ge 44\text{ px}$.
-- **Lectura editorial:** Lectura pausada en móvil o escritorio con ritmo asimétrico, tipografía de revista y espacios que no parecen cajas de software.
+- **Entorno de uso real:** La encimera de la cocina, habitualmente con el teléfono móvil en una mano al lado de la cafetera, balanza o hervidor, exigiendo objetivos táctiles grandes ($\ge 44\text{ px}$) y fuentes legibles de un vistazo.
+- **Momento de compra:** El usuario busca en escritorio o móvil resolver una necesidad concreta de su método (ej. «mejor molinillo para V60») y necesita un enlace directo y veraz hacia su tienda local (Amazon España o EE. UU.).
 
-## Brand Commitments (Fuentes de verdad innegociables)
+## Capabilities and Constraints
 
-- **Fuentes de verdad obligatorias:** `DESIGN.md` en la raíz y la carpeta `brand/` (logos SVG). Son vinculantes: colores, tipografías (`Gloock` para display y `Figtree` para interfaz/lectura), componentes, movimiento y reglas de logo.
-- **Paleta oficial:**
-  - `porcelana` (`#F4F6F3`): Blanco frío mineral para superficies de lectura (evita el crema).
-  - `cereza-oscura` (`#3A0E22`): Color de marca, bandas oscuras (Hero, La Barra, Footer) y logo.
-  - `cereza-profunda` (`#24081A`): Fondo del café en la taza y paneles dentro de bandas cereza.
-  - `crema` (`#E8A838`): Acento dinámico, botón «Ver en Amazon», swirl del logo y foco activo. Nunca como texto sobre porcelana.
-  - `espresso` (`#1F1410`): Texto de lectura sobre porcelana.
-  - `humo` (`#6B5B63`) y `humo-claro` (`#CDBFC6`): Textos secundarios.
-- **Escala de tueste funcional:** El color codifica la intensidad del método (Crudo `#8FA86B`, Claro `#E8A838`, Medio `#B9702E`, Oscuro `#6A3B20`, Espresso `#2A1810`).
-- **Una sola apuesta audaz:** El *Dial de extracción* del hero. Todo lo demás es sobrio, disciplinado y editorial.
+- **Métodos calibrados:** Espresso, Moka (cafetera italiana), Prensa francesa, V60, AeroPress y Cold brew.
+- **Herramientas de barra interactivas:** Dial de extracción con SVG dinámico, Quiz guiado en 4 preguntas con URL propia compartible, Calculadora de ratio dual (gramos/ml) y temporizador de extracción por fases.
+- **Cumplimiento estricto de Amazon Associates:** Sin precios estáticos que puedan desactualizarse, enlaces obligatorios con `rel="sponsored nofollow noopener"`, microtexto visible de afiliación y script de auditoría automatizado (`npm run audit:affiliates`).
+- **Arquitectura técnica:** Astro 5 en modo puramente estático (SSG), Tailwind CSS, islas Preact con presupuesto JS $< 20\text{ KB}$ e indexación con Pagefind.
+
+## Brand Commitments
+
+- **Nombre y lema:** Tazamo — «Tu barra de café en casa».
+- **Voz y tono:** Cercana, divulgativa, precisa y honesta. Redacción en minúsculas en etiquetas y títulos (*sentence case*), sin exclamaciones publicitarias vacías.
+- **Paleta vinculante (DESIGN.md):** `porcelana` (#F4F6F3) como fondo base limpio; `cereza-oscura` (#3A0E22) y `cereza-profunda` (#24081A) para calibración y compra; `crema` (#E8A838) exclusivamente para acentos de acción; `espresso` (#1F1410) para texto de lectura.
+- **Tipografía vinculante:** `Gloock` para titulares de gran presencia editorial y `Figtree` para cuerpo e interfaz con cifras tabulares obligatorias (`tabular-nums`).
+- **Activos vectoriales:** Logotipos e isotipos oficiales preservados en `/brand` sin modificaciones.
+
+## Evidence on Hand
+
+- **Catálogo de equipo:** 8 productos iniciales en `src/content/equipo/` con esquemas Zod e ilustraciones vectoriales continuas en `/public/illustrations/`.
+- **Artículos y recetas:** 12 guías estructuradas en `src/content/guias/` (Guías 1, 2 y 4 con cuerpo completo; 3 y 5 a 12 con esquemas completos y FAQs).
+- **Verificación de calidad:** Auditoría móvil Lighthouse registrada con 100 en Rendimiento, 98 en Accesibilidad y 100 en SEO.
 
 ## Product Principles
 
-1. **Atmósfera de cafetería de especialidad viva:** Se siente como el mostrador de una cafetería de tercera ola con servicio en marcha: algo que calibrar, ajustar o catar.
-2. **Composición asimétrica editorial:** En lugar de cuadrículas de tarjetas repetitivas, se mezclan piezas grandes con satélites desiguales, emulando la maquetación de una revista impresa de diseño.
-3. **Honestidad comercial sin atajos:** Las contras de cada producto van visibles. Enlaces directos a Amazon con `rel="sponsored nofollow noopener"` y microtexto «Enlace de afiliado».
-4. **Voz cercana y precisa:** Español neutro, frases directas, verbos activos, sin relleno.
+1. **Una sola audacia visual, el resto sobrio:** El Dial de extracción del hero con su taza cenital y swirl animado es el único momento memorable; el resto del sitio se mantiene disciplinado para facilitar la lectura y la decisión.
+2. **Color como dato funcional:** La escala de tueste (crudo, claro, medio, oscuro, espresso) informa visualmente sobre el método y el grano en chips y bordes de tarjeta, nunca como mero adorno.
+3. **Honestidad editorial transparente:** Toda recomendación comercial va acompañada de sus contras y limitaciones reales. No se afirman pruebas no efectuadas.
+4. **Velocidad y accesibilidad universales:** Carga instantánea con HTML estático, compatibilidad sin JavaScript en el primer render, foco de teclado visible y contraste verificado AA.
 
 ## Accessibility & Inclusion
 
-- Cumplimiento WCAG AA verificado en contrastes (texto espresso sobre porcelana 16.57:1; texto sobre cereza 15.27:1).
-- Regiones `aria-live="polite"` en el dial y temporizador.
-- Soporte estricto de `prefers-reduced-motion` y `tabular-nums` en mediciones.
+- Contraste de texto validado según WCAG AA (cuerpo sobre porcelana 16.57:1; texto sobre cereza 15.27:1).
+- Respeto estricto a `prefers-reduced-motion` para desactivar transiciones continuas.
+- Anuncios `aria-live` en el dial interactivo y temporizador de extracción.
+- Terminología accesible para variantes regionales del café en el mundo hispanohablante (moka / cafetera italiana / greca; pocillo / taza).

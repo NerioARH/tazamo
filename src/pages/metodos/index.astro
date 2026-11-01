@@ -22,25 +22,28 @@ const getTuesteBadge = (nivel: string) => {
     { name: 'Métodos', url: '/metodos' },
   ]}
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
     <div class="max-w-2xl mb-12">
-      <h1 class="font-display text-4xl sm:text-5xl text-espresso mb-3">
+      <span class="text-xs uppercase font-bold tracking-wider text-humo font-mono">
+        Guías madre de extracción
+      </span>
+      <h1 class="font-display text-4xl sm:text-5xl text-espresso mt-1 mb-3">
         Los 6 métodos de café
       </h1>
-      <p class="text-sm sm:text-base text-humo leading-relaxed font-sans">
+      <p class="text-sm text-humo leading-relaxed">
         Cada sistema de preparación resalta virtudes químicas distintas del grano. Conoce los ratios de referencia, las curvas de molienda y el equipo adecuado para cada uno.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {LISTA_METODOS.map((m) => (
-        <article class="p-6 rounded-md bg-[#FAFBF9] border border-espresso/15 flex flex-col justify-between group">
+        <article class="bg-white p-6 rounded-lg border border-espresso/10 hover:border-cereza-oscura/40 transition-all flex flex-col justify-between group shadow-sm">
           <div>
-            <div class="flex items-center justify-between gap-2 mb-4 font-sans text-xs">
+            <div class="flex items-center justify-between gap-2 mb-3">
               <span class={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${getTuesteBadge(m.nivelTueste)}`}>
                 Tueste {m.tuesteLabel}
               </span>
-              <span class="text-humo">
+              <span class="text-xs text-humo font-mono">
                 {m.temperatura}
               </span>
             </div>
@@ -51,13 +54,13 @@ const getTuesteBadge = (nivel: string) => {
               </a>
             </h2>
 
-            <p class="text-xs text-humo leading-relaxed mb-6 font-sans">
+            <p class="text-xs text-humo leading-relaxed mb-6">
               {m.descripcionCorta}
             </p>
 
-            <div class="p-4 rounded bg-porcelana text-xs space-y-1.5 font-sans mb-6 border border-espresso/10">
+            <div class="p-3.5 rounded bg-porcelana text-xs space-y-1.5 font-mono mb-6 border border-espresso/5">
               <div class="flex justify-between">
-                <span class="text-humo">Ratio:</span>
+                <span class="text-humo">Ratio estándar:</span>
                 <strong class="text-espresso tabular-nums">{m.ratio}</strong>
               </div>
               <div class="flex justify-between">
@@ -65,24 +68,24 @@ const getTuesteBadge = (nivel: string) => {
                 <strong class="text-espresso">{m.molienda}</strong>
               </div>
               <div class="flex justify-between">
-                <span class="text-humo">Tiempo:</span>
+                <span class="text-humo">Tiempo medio:</span>
                 <strong class="text-espresso tabular-nums">{m.tiempo}</strong>
               </div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-espresso/10 flex items-center justify-between text-xs font-sans">
+          <div class="pt-4 border-t border-espresso/10 flex items-center justify-between text-xs">
             <a
               href={`/metodos/${m.id}`}
               class="font-semibold text-cereza-oscura group-hover:underline"
             >
-              Guía técnica
+              Guía técnica del método
             </a>
             <a
               href={`/equipo?metodo=${m.id}`}
               class="text-humo hover:text-espresso"
             >
-              Equipo
+              Equipo →
             </a>
           </div>
         </article>
